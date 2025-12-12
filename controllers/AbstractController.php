@@ -1,7 +1,14 @@
 <?php
+
 abstract class AbstractController {
-    protected function render(array $data)
+
+    protected function renderView($viewPath, array $data)
     {
-        echo json_encode($data);
+        extract($data);
+
+        ob_start();
+        require_once "views/{$viewPath}.phtml";
+        $content = ob_get_clean();
+        require_once "templates/layout.phtml";
     }
 }

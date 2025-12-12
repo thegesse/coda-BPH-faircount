@@ -23,4 +23,14 @@ class RefundsManager extends AbstractManager {
         }
         return null;
     }
+    public function insertRefund(int $paidByUserId, int $paidToUserId, float $amount) {
+        $query = $this->db->prepare("
+            INSERT INTO `refunds` (`paid_by_user_id`, `paid_to_user_id`, `amount`) VALUES (:paidBy, :paidTo, :amount)");
+        $parameters = [
+            "paidBy" => $paidByUserId,
+            "paidTo" => $paidToUserId,
+            "amount" => $amount
+        ];
+        $query->execute($parameters);
+    }
 }

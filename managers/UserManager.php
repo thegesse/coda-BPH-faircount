@@ -23,4 +23,24 @@ class UserManager extends AbstractManager {
         }
         return null;
     }
+
+    public function findOneByEmail(string $email): ?User {
+        $query = $this->db->prepare("SELECT * FROM `users` WHERE `email` = :email");
+        $parameters = ["email" => $email];
+        $query->execute($parameters);
+        $results = $query->fetch(pdo::FETCH_ASSOC);
+
+        if($results) {
+            $user = new User($results["id"], $results["user_name"], $results["email"], $results["password"]);
+            return $user;
+        }
+        return null;
+    }
+
+    public function createUser(string $name, string $email, string $password) {
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        $query = $this->db->prepare("INSERT INTO `users` (`user_name`, `email`, `password`) VALUES (:name, :email, :password)");
+        $parameters = ["name" => $name, "email" => $email, "password" => $hashedPassword];
+        $query->execute($parameters);
+    }
 }

@@ -25,4 +25,15 @@ class SpendingParticipantManager extends AbstractManager {
         }
         return null;
     }
+
+    public function insertSpendingParticipant(int $spendingId, int $userId, float $shareAmount) {
+        $query = $this->db->prepare("
+            INSERT INTO `spending_participants` (`spending_id`, `user_paying`, `amount`) VALUES (:spendingId, :userId, :amount)");
+        $parameters = [
+            "spendingId" => $spendingId,
+            "userId" => $userId,
+            "shareAmount" => $shareAmount
+        ];
+        $query->execute($parameters);
+    }
 }

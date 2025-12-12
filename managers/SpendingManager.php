@@ -12,7 +12,7 @@ class SpendingManager extends AbstractManager {
         return $spendings;
 
     }
-    public function findOne(int $id): ?Spendings {
+    public function findOne(int $id) : ?Spendings {
         $query = $this->db->prepare("SELECT * FROM spending WHERE id = :id");
         $parameters = ["id" => $id];
         $query->execute($parameters);
@@ -22,5 +22,23 @@ class SpendingManager extends AbstractManager {
             return $spendings;
         }
         return null;
+    }
+
+    public function insertSpending(string $paidBy, string $ammount, string $category) {
+        $query = $this->db->prepare("INSERT INTO `spendings`(`paid_by`, `ammount`, `category`)VALUES(:paidBy, :amount, :category)");
+        $parameters = ["paidBy" => $paidBy, "amount" => $ammount, "category" => $category];
+        $query->execute($parameters);
+    }
+
+    public function findSpendingForUser(int $id) : Spendings {
+        $query = $this->db->prepare("SELECT * FROM spending WHERE spending_id = :id");
+        $parameters = ["id" => $id];
+        $query->execute($parameters);
+        $results = $query->fetch(pdo::FETCH_ASSOC);
+        $Spendings = [];
+        foreach ($results as $result) {
+            $Spendings[] = $results;
+        }
+        return $Spendings;
     }
 }

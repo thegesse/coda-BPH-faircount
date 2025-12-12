@@ -3,7 +3,7 @@
         'name' => 'votrenom/exercice-faircount',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '71f80532c01d6e9ca610f88836fcf0f926107539',
+        'reference' => 'c000e41bacdfbeea904abe8097d1bb9d04624686',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -94,7 +94,7 @@
         'votrenom/exercice-faircount' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '71f80532c01d6e9ca610f88836fcf0f926107539',
+            'reference' => 'c000e41bacdfbeea904abe8097d1bb9d04624686',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,1 +1,28 @@
-<?php
+<div class="container">
+    <div class="form-box">
+        <h2>Login</h2>
+
+        <form action="index.php?route=home" method="POST">
+
+
+            <div>
+                <label for="email">Adresse E-mail</label>
+                <input type="email" name="email" id="email" required placeholder="vous@exemple.com">
+            </div>
+
+            <div>
+                <label for="password">Mot de Passe</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+        <p>
+            Pas de compte?
+            <a href="index.php?route=register">Cree un compte ici</a>
+        </p>
+    </div>
+</div>
